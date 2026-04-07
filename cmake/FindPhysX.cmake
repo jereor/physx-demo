@@ -32,10 +32,11 @@ function(add_physx_static_library target_name lib_name)
     )
 endfunction()
 
-# The four DLL-backed libs we actually need
+# DLL-backed libs
 add_physx_dll_library(PhysX::Foundation  PhysXFoundation_64)
 add_physx_dll_library(PhysX::Common      PhysXCommon_64)
 add_physx_dll_library(PhysX::PhysX       PhysX_64)
+add_physx_dll_library(PhysX::Cooking PhysXCooking_64)
 
 # Extensions is static — no DLL, links directly into your exe
 add_physx_static_library(PhysX::Extensions PhysXExtensions_static_64)
@@ -51,6 +52,7 @@ target_link_libraries(PhysX::All INTERFACE
     PhysX::PhysX
     PhysX::Extensions
     PhysX::PvdSDK
+    PhysX::Cooking
 )
 target_include_directories(PhysX::All INTERFACE "${PHYSX_INC_DIR}")
 
@@ -59,5 +61,6 @@ set(PHYSX_RUNTIME_DLLS
     "${PHYSX_BIN_DIR}/PhysXFoundation_64.dll"
     "${PHYSX_BIN_DIR}/PhysXCommon_64.dll"
     "${PHYSX_BIN_DIR}/PhysX_64.dll"
+    "${PHYSX_BIN_DIR}/PhysXCooking_64.dll"
 )
 set(PhysX_FOUND TRUE)

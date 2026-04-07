@@ -4,13 +4,12 @@ project(physx_demo LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- Point this at your PhysX repo root ---
-set(PhysX_ROOT "C:/PhysX"
-    CACHE PATH "Root of the cloned PhysX repository")
-
 # Pull in our finder
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(PhysX REQUIRED)
+
+#  Match PhysX's CRT linkage: /MT in Release, /MTd in Debug
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 # --- The executable ---
 add_executable(physx_demo main.cpp)
