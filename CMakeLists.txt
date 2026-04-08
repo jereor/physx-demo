@@ -4,6 +4,9 @@ project(physx_demo LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(PhysX_ROOT ${PHYSX_ROOT}
+    CACHE PATH "Root of the cloned PhysX repository")
+
 # Pull in our finder
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(PhysX REQUIRED)
