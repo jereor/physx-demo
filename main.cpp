@@ -108,7 +108,16 @@ int main()
         physx::PxTransform(physx::PxVec3(0.0f, 10.0f, 0.0f)), // start position
         physx::PxBoxGeometry(0.5f, 0.5f, 0.5f), // half-extents
         *material,
-        1.0f // density kg/m³
+        500.0f // density kg/m³
+    );
+    box->setLinearDamping(0.1f);
+    box->setAngularDamping(0.1f);
+    box->setRigidDynamicLockFlags(
+        physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_X |
+        physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Z |
+        physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X |
+        physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y |
+        physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z
     );
     scene->addActor(*box);
 
